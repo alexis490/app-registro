@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "700988847796",
+    "project_id": "empresa-clisa",
+    "storage_bucket": "empresa-clisa.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700988847796:android:40475818de2cc1816cc9e1",
+        "android_client_info": {
+          "package_name": "com.example.app_registro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByvRKs9cQwK9yjSs-Y7MG_u7xnlWGe9EY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
