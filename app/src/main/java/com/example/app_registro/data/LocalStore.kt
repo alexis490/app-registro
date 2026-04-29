@@ -119,6 +119,7 @@ object LocalStore {
             responsible = json.getString("responsible"),
             storeName = json.getString("storeName"),
             createdAtMillis = json.getLong("createdAtMillis"),
+            alarmAtMillis = json.optLong("alarmAtMillis").takeIf { it > 0L },
             paymentStatus = PaymentStatus.fromStorage(json.getString("paymentStatus")),
             createdBy = json.getString("createdBy")
         )
@@ -147,6 +148,7 @@ object LocalStore {
         storeName: String,
         paymentStatus: PaymentStatus,
         createdBy: String,
+        alarmAtMillis: Long? = null,
         existingId: String? = null,
         createdAtMillis: Long = System.currentTimeMillis()
     ): Record {
@@ -158,6 +160,7 @@ object LocalStore {
             responsible = responsible,
             storeName = storeName,
             createdAtMillis = createdAtMillis,
+            alarmAtMillis = alarmAtMillis,
             paymentStatus = paymentStatus,
             createdBy = createdBy
         )
@@ -199,6 +202,7 @@ object LocalStore {
                 .put("responsible", record.responsible)
                 .put("storeName", record.storeName)
                 .put("createdAtMillis", record.createdAtMillis)
+                .put("alarmAtMillis", record.alarmAtMillis ?: 0L)
                 .put("paymentStatus", record.paymentStatus.storageValue)
                 .put("createdBy", record.createdBy)
         }

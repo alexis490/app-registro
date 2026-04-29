@@ -37,6 +37,7 @@ data class Record(
     val responsible: String,
     val storeName: String,
     val createdAtMillis: Long,
+    val alarmAtMillis: Long?,
     val paymentStatus: PaymentStatus,
     val createdBy: String
 )

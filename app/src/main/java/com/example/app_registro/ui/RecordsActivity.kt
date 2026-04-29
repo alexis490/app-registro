@@ -12,6 +12,7 @@ import com.example.app_registro.data.PaymentStatus
 import com.example.app_registro.data.Record
 import com.example.app_registro.databinding.ActivityRecordsBinding
 import com.example.app_registro.databinding.DialogEditRecordBinding
+import com.example.app_registro.notifications.ReminderScheduler
 import com.example.app_registro.ui.adapters.RecordAdapter
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -31,6 +32,7 @@ class RecordsActivity : BaseActivity() {
         adapter = RecordAdapter(
             onEdit = { showEditDialog(it) },
             onDelete = {
+                ReminderScheduler.cancelRecordAlarm(this, it.id)
                 LocalStore.deleteRecord(it.id)
                 refreshRecords()
             }
@@ -64,9 +66,26 @@ class RecordsActivity : BaseActivity() {
         dialogBinding.quantityEditText.setText(record.quantity.toString())
         dialogBinding.responsibleEditText.setText(record.responsible)
         dialogBinding.storeEditText.setText(record.storeName)
+        var selectedAlarmAtMillis = record.alarmAtMillis
         dialogBinding.paymentStatusSpinner.adapter =
             ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, labels)
         dialogBinding.paymentStatusSpinner.setSelection(statuses.indexOf(record.paymentStatus))
+        dialogBinding.alarmSummaryText.text = if (selectedAlarmAtMillis == null) {
+            getString(R.string.no_alarm_selected)
+        } else {
+            getString(R.string.alarm_selected, AlarmPickerHelper.formatAlarm(selectedAlarmAtMillis))
+        }
+        dialogBinding.selectAlarmButton.setOnClickListener {
+            AlarmPickerHelper.showTimePicker(this, selectedAlarmAtMillis) { selectedMillis ->
+                selectedAlarmAtMillis = selectedMillis
+                dialogBinding.alarmSummaryText.text =
+                    getString(R.string.alarm_selected, AlarmPickerHelper.formatAlarm(selectedAlarmAtMillis))
+            }
+        }
+        dialogBinding.clearAlarmButton.setOnClickListener {
+            selectedAlarmAtMillis = null
+            dialogBinding.alarmSummaryText.text = getString(R.string.no_alarm_selected)
+        }
 
         val dialog = AlertDialog.Builder(this)
             .setTitle(R.string.edit_record)
@@ -91,12 +110,14 @@ class RecordsActivity : BaseActivity() {
                     quantity = quantity,
                     responsible = responsible,
                     storeName = storeName,
+                    alarmAtMillis = selectedAlarmAtMillis,
                     paymentStatus = statuses[dialogBinding.paymentStatusSpinner.selectedItemPosition],
                     createdBy = record.createdBy,
                     existingId = record.id,
                     createdAtMillis = record.createdAtMillis
                 )
                 LocalStore.saveRecord(updatedRecord)
+                ReminderScheduler.scheduleRecordAlarm(this, updatedRecord)
                 refreshRecords()
                 dialog.dismiss()
             }

@@ -9,9 +9,8 @@ import com.example.app_registro.R
 import com.example.app_registro.data.PaymentStatus
 import com.example.app_registro.data.Record
 import com.example.app_registro.databinding.ItemRecordBinding
-import java.text.SimpleDateFormat
+import com.example.app_registro.ui.AlarmPickerHelper
 import java.util.Date
-import java.util.Locale
 
 class RecordAdapter(
     private val onEdit: (Record) -> Unit,
@@ -29,7 +28,7 @@ class RecordAdapter(
 
     inner class RecordViewHolder(private val binding: ItemRecordBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+        private val dateFormat = java.text.SimpleDateFormat("dd/MM/yyyy HH:mm", java.util.Locale.getDefault())
 
         fun bind(record: Record) {
             binding.productNameText.text = record.productName
@@ -41,6 +40,14 @@ class RecordAdapter(
                 record.storeName
             )
             binding.dateText.text = dateFormat.format(Date(record.createdAtMillis))
+            binding.alarmText.text = if (record.alarmAtMillis == null) {
+                binding.root.context.getString(R.string.no_alarm_selected)
+            } else {
+                binding.root.context.getString(
+                    R.string.alarm_item_text,
+                    AlarmPickerHelper.formatAlarm(record.alarmAtMillis)
+                )
+            }
             binding.statusChip.text = when (record.paymentStatus) {
                 PaymentStatus.PENDIENTE -> binding.root.context.getString(R.string.pending)
                 PaymentStatus.PAGADO_PARCIAL -> binding.root.context.getString(R.string.partial_paid)

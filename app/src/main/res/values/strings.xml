@@ -39,6 +39,12 @@
     <string name="unregistered_product">Producto sin registrar</string>
     <string name="complete_fields">Completa todos los campos requeridos</string>
     <string name="record_saved">Salida registrada correctamente</string>
+    <string name="record_alarm">Alarma del registro</string>
+    <string name="select_alarm">Elegir alarma</string>
+    <string name="clear_alarm">Quitar</string>
+    <string name="no_alarm_selected">Sin alarma programada</string>
+    <string name="alarm_selected">Alarma: %1$s</string>
+    <string name="alarm_item_text">Recordatorio: %1$s</string>
     <string name="pending">Pendiente</string>
     <string name="partial_paid">Pagado parcial</string>
     <string name="paid">Pagado</string>
@@ -55,6 +61,10 @@
     <string name="delete">Borrar</string>
     <string name="pending_records_channel_name">Alertas de cierre</string>
     <string name="pending_records_channel_description">Avisos para productos entregados que aun no se cerraron en ventas.</string>
+    <string name="record_alarm_channel_name">Alarmas de registros</string>
+    <string name="record_alarm_channel_description">Alarmas individuales con banner flotante, sonido y vibracion.</string>
     <string name="pending_records_notification_title">Hay productos pendientes por cerrar</string>
     <string name="pending_records_notification_body">Tienes %1$d registros pendientes o parciales por revisar antes de cerrar.</string>
+    <string name="record_alarm_title">Recordatorio de %1$s</string>
+    <string name="record_alarm_body">Revisa el producto %1$s de la tienda %2$s.</string>
 </resources>

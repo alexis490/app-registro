@@ -18,6 +18,7 @@ import com.journeyapps.barcodescanner.ScanOptions
 class RegisterActivity : BaseActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var statusOptions: List<PaymentStatus>
+    private var selectedAlarmAtMillis: Long? = null
 
     private val scanLauncher = registerForActivityResult(ScanContract()) { result ->
         val contents = result.contents
@@ -49,7 +50,13 @@ class RegisterActivity : BaseActivity() {
 
         binding.findProductButton.setOnClickListener { findProduct() }
         binding.scanButton.setOnClickListener { startScan() }
+        binding.selectAlarmButton.setOnClickListener { selectAlarm() }
+        binding.clearAlarmButton.setOnClickListener {
+            selectedAlarmAtMillis = null
+            updateAlarmSummary()
+        }
         binding.saveButton.setOnClickListener { saveRecord() }
+        updateAlarmSummary()
     }
 
     private fun startScan() {
@@ -143,11 +150,13 @@ class RegisterActivity : BaseActivity() {
             quantity = quantity,
             responsible = responsible,
             storeName = storeName,
+            alarmAtMillis = selectedAlarmAtMillis,
             paymentStatus = status,
             createdBy = user.username
         )
         LocalStore.saveRecord(record)
         ReminderScheduler.scheduleNextReminder(this)
+        ReminderScheduler.scheduleRecordAlarm(this, record)
 
         Toast.makeText(this, R.string.record_saved, Toast.LENGTH_SHORT).show()
         binding.codeEditText.text?.clear()
@@ -155,7 +164,24 @@ class RegisterActivity : BaseActivity() {
         binding.quantityEditText.text?.clear()
         binding.paymentStatusSpinner.setSelection(0)
         binding.unknownProductBanner.isVisible = false
+        selectedAlarmAtMillis = null
+        updateAlarmSummary()
         binding.codeEditText.requestFocus()
+    }
+
+    private fun selectAlarm() {
+        AlarmPickerHelper.showTimePicker(this, selectedAlarmAtMillis) { selectedMillis ->
+            selectedAlarmAtMillis = selectedMillis
+            updateAlarmSummary()
+        }
+    }
+
+    private fun updateAlarmSummary() {
+        binding.alarmSummaryText.text = if (selectedAlarmAtMillis == null) {
+            getString(R.string.no_alarm_selected)
+        } else {
+            getString(R.string.alarm_selected, AlarmPickerHelper.formatAlarm(selectedAlarmAtMillis))
+        }
     }
 
     private fun statusLabel(status: PaymentStatus): String {
