@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+            android:textColor="@color/textPrimary"
             android:textStyle="bold" />
 
         <TextView
@@ -23,9 +24,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            android:textColor="@color/textSecondary" />
 
         <com.google.android.material.card.MaterialCardView
+            style="@style/AppDarkCard"
             android:id="@+id/scanRegisterCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,17 +48,20 @@
                     android:layout_height="wrap_content"
                     android:text="@string/scan_and_register"
                     android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                    android:textColor="@color/textOnDark"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:text="@string/scan_and_register_desc" />
+                    android:text="@string/scan_and_register_desc"
+                    android:textColor="@color/textMutedOnDark" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            style="@style/AppDarkCard"
             android:id="@+id/recordsCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,17 +81,20 @@
                     android:layout_height="wrap_content"
                     android:text="@string/records_list"
                     android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                    android:textColor="@color/textOnDark"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:text="@string/records_list_desc" />
+                    android:text="@string/records_list_desc"
+                    android:textColor="@color/textMutedOnDark" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            style="@style/AppDarkCard"
             android:id="@+id/manageProductsCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -105,22 +114,25 @@
                     android:layout_height="wrap_content"
                     android:text="@string/manage_products"
                     android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                    android:textColor="@color/textOnDark"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:text="@string/manage_products_desc" />
+                    android:text="@string/manage_products_desc"
+                    android:textColor="@color/textMutedOnDark" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/logoutButton"
-            style="@style/Widget.Material3.Button.OutlinedButton"
+            style="@style/AppOutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:minHeight="54dp"
             android:text="@string/logout" />
     </LinearLayout>
 </ScrollView>

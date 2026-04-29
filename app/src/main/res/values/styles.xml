@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTextInputBox" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/fieldBackground</item>
+        <item name="boxStrokeColor">@color/fieldStroke</item>
+        <item name="hintTextColor">@color/textSecondary</item>
+        <item name="android:textColorHint">@color/textSecondary</item>
+        <item name="startIconTint">@color/textSecondary</item>
+        <item name="endIconTint">@color/textSecondary</item>
+    </style>
+
+    <style name="AppTextInputEditText" parent="Widget.Material3.TextInputEditText.OutlinedBox">
+        <item name="android:textColor">@color/textPrimary</item>
+        <item name="android:textColorHint">@color/textSecondary</item>
+    </style>
+
+    <style name="AppDarkCard" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/surfaceCard</item>
+        <item name="strokeColor">@color/surfaceBorder</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+    
+    <style name="AppOutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="strokeColor">@color/surfaceBorder</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+</resources>

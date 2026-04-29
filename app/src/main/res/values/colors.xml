@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#1A1F2C</color>
+    <color name="black">#15121D</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="primary">#0B6E4F</color>
-    <color name="secondary">#E8B923</color>
-    <color name="surfaceMuted">#F3F5F2</color>
+    <color name="primary">#157A57</color>
+    <color name="secondary">#2A64F6</color>
+    <color name="surfaceMuted">#F7F6FB</color>
     <color name="warning">#B95C00</color>
+    <color name="surfaceCard">#17121E</color>
+    <color name="surfaceBorder">#B7B2C1</color>
+    <color name="textPrimary">#1A1822</color>
+    <color name="textSecondary">#5F5B69</color>
+    <color name="textOnDark">#F5F2FB</color>
+    <color name="textMutedOnDark">#D5D0DE</color>
+    <color name="fieldBackground">#FFFFFF</color>
+    <color name="fieldStroke">#D3CFDA</color>
+    <color name="gradientStart">#2B68F6</color>
+    <color name="gradientEnd">#B11CF1</color>
 </resources>

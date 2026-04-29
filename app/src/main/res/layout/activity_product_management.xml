@@ -11,7 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
+        android:elevation="0dp"
         android:title="@string/manage_products"
+        app:navigationIconTint="@color/textPrimary"
+        app:titleTextColor="@color/textPrimary"
         app:navigationIcon="@android:drawable/ic_menu_revert" />
 
     <LinearLayout
@@ -28,8 +31,8 @@
             android:text="@string/add_product" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/importButton"
-            style="@style/Widget.Material3.Button.TonalButton"
+        android:id="@+id/importButton"
+        style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -44,6 +47,7 @@
         android:padding="20dp"
         android:text="@string/no_products_yet"
         android:textAlignment="center"
+        android:textColor="@color/textSecondary"
         android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
